@@ -17,7 +17,7 @@ void convert_to_hex (int a) {
 	unsigned char hex_table[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};	
 	std::vector<int> output_values;
 	while (a != 0) {
-		output_values.push_back(a%16); // Remainder od division is stored
+		output_values.push_back(a%16); // Remainder of division is stored
 		a /= 16;
 	}
 	for (int i = output_values.size() - 1; i >= 0; --i) {
@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
 	// Print ciphertext ( in hex )
 	for (int x = 0; x < K.size(); ++x) {
 		convert_to_hex(K[x]);
-		std::cout << " "; // Eeparates every ASCII character ( every 2 hex chars )
+		std::cout << " "; // Separates every ASCII character ( every 2 hex chars )
 	}
 	std::cout << "\n";
 	return 0;
