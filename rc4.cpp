@@ -3,7 +3,7 @@
 	Year: 2022
 	Goal: RC4 implementation in C++
 	Sources: https://wl.vern.cc/wiki/RC4?lang=en
-			 https://bw.vern.cc/cryptography/wiki/RC4
+		 https://bw.vern.cc/cryptography/wiki/RC4
 */
 #include <iostream>
 #include <vector>
