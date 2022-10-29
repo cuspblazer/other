@@ -3,7 +3,7 @@
 	Year: 2022
 	Goal: RC4 implementation in C++
 	Sources: https://wl.vern.cc/wiki/RC4?lang=en
-		 https://bw.vern.cc/cryptography/wiki/RC4
+			 https://bw.vern.cc/cryptography/wiki/RC4
 */
 #include <iostream>
 #include <vector>
@@ -13,15 +13,18 @@ void swap_bytes(unsigned char* a, unsigned char* b) {
 	*a = *b;
 	*b = tmp;
 }
-void convert_to_hex (int a) {
+void convert_to_hex (unsigned int a) {
 	unsigned char hex_table[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};	
 	std::vector<int> output_values;
 	while (a != 0) {
-		output_values.push_back(a%16); // Remainder of division is stored
-		a /= 16;
+		output_values.push_back(a%16); // Remainder is stored in the vector
+		a /= 16; // Division is stored in [a]
+	}
+	if (output_values.size() == 1) { // Prevents single hex digit output when [a] is smaller than 16 ( outputs "0?" instead of "?" )
+		output_values.push_back(0);
 	}
 	for (int i = output_values.size() - 1; i >= 0; --i) {
-		std::cout << hex_table[output_values[i]];
+		std::cout << hex_table[output_values[i]]; // All elements of the vector are printed to the user from the back
 	}
 }
 

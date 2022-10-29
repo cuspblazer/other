@@ -8,14 +8,20 @@ void convert_to_hex (unsigned int a) {
 		output_values.push_back(a%16); // Remainder is stored in the vector
 		a /= 16; // Division is stored in [a]
 	}
+	if (output_values.size() == 1) { // Prevents single hex digit output when [a] is smaller than 16 ( outputs "0?" instead of "?" )
+		output_values.push_back(0);
+	} else if (output_values.size() == 0) { // When user inputs number 0 in mode 'n'
+		output_values.push_back(0);
+		output_values.push_back(0);
+	}
 	for (int i = output_values.size() - 1; i >= 0; --i) {
 		std::cout << hex_table[output_values[i]]; // All elements of the vector are printed to the user from the back
 	}
 }
 void print_values (unsigned char a) {
-	if (a >= 32 && a <= 126) {
+	if (a >= 32 && a <= 126) { // If readable then print it
 		std::cout << "\t" << a << "\n";
-	} else {
+	} else { // Or else print it as a dot 
 		std::cout << "\t" << ".\n";
 	}
 }
@@ -38,7 +44,6 @@ void text_conversion(bool hex_string_only) {
 		std::cout << "\t" << (unsigned int) (unsigned char) input_text[i];
 		print_values((unsigned char) input_text[i]);
 	}
-	std::cout << "\n";
 }
 void number_conversion(bool hex_string_only) {
 	// Saving input number
@@ -47,6 +52,7 @@ void number_conversion(bool hex_string_only) {
 	std::cin >> input_number;
 	if (hex_string_only) { // Same as in func text_conversion
 		convert_to_hex(input_number);
+		std::cout << "\n";
 		return;
 	}
 	// Table output
