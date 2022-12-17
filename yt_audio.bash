@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Description: Extract url from name of the video and return it to the user.
 # 	       User can also download the found video as audio track.
 # Note: don't judge me. it's my firt script
@@ -19,7 +20,7 @@ elif [ $# -eq 2 ] && [ "$(echo $1)" == "-d" ]; then
 	yt_dlp_path=$(which yt-dlp)
 	download=1
 else
-	echo "Unrecognized argument. Exiting..."
+	echo "Unrecognized argument."
 fi
 api_link="https://api.yt.jae.fi/search?q=$query&filter=all" # filter=music_songs
 
@@ -50,7 +51,6 @@ function main() {
 	# Check for search errors
 	if [ "$(echo $json_list | jq -r '.["error"]')" != "null" ]; then
 		echo "A search error occurred. Exiting..."
-		echo $json_list
 		return -1
 	elif [ "$(echo $json_list | jq -r '.["items"]')" == "null" ]; then
 		echo "No tracks found. Exiting..."
