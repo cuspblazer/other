@@ -21,10 +21,10 @@ elif [ $# -eq 2 ] && [ "$(echo $1)" == "-d" ]; then
 else
 	echo "Unrecognized argument. Exiting..."
 fi
-yt_link="https://api.yt.jae.fi/search?q=$query&filter=all" # filter=music_songs
+api_link="https://api.yt.jae.fi/search?q=$query&filter=all" # filter=music_songs
 
 function extract_json() {
-	json_list=$($curl_path -s $yt_link)
+	json_list=$($curl_path -s $api_link)
 }
 function extract_element_properties() {
 	json_element_properties=$(echo $json_list | jq '.["items"]['$index']') # Extracts only properties the one element
